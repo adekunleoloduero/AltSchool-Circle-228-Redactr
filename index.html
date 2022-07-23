@@ -12,41 +12,48 @@
 
 <body>
   <main class="main">
-    <h1>Redactr</h1>
-    <p>Redactr is here to help you safely share content on social media by scrambling portions of the text you don’t
-      want the world to read/see.</p>
-    <h3>How it works</h3>
-    <ol>
-      <li>Write/paste the content into the specified form field</li>
-      <li>specify the words you need to be scrambled into the specified input field <span>more than one word are
-          separated by space </span></li>
-      <li>Click on the Redactr button to redactr your content</li>
-    </ol>
-  </main>
+    <section>
+      <h1>Redactr</h1>
+      <p>Redactr is here to help you safely share content on social media by scrambling portions of the text you don’t
+        want the world to read/see.</p>
+      <h3>How it works</h3>
+      <ol>
+        <li>Write/paste the content into the specified form field</li>
+        <li>specify the words you need to be scrambled into the specified input field <span>more than one word are
+            separated by space </span></li>
+        <li>Click on the Redactr button to redactr your content</li>
+      </ol>
 
-  <form action="" class="form" id="form">
-    <div>
-      <label for="content">Content</label>
-      <textarea id="content" placeholder="Type/Paste your content here"></textarea>
-    </div>
-    <div>
-      <label for="words">Word(s) to redactr</label>
-      <input type="text" name="words" id="words" placeholder="Specify Words to redactr (e.g book pen money)">
-    </div>
+    </section>
 
-    <!-- Interface for the feature to allow  users to specify what would be used to replace the words to be scrambled. Going forward lets refer to this feature as Feature 2 -->
-    <div>
-      <p>Specify what to use as replacement for the words that you want scrambled. For example; asteriks, question marks, dashes, underscores, or even other words.</p>
-      <label for="replacement">Replacement</label> 
-      <input type="text" id="replacement" name="replacement" placeholder="Specify a replacement">
-    </div>
+    <form action="" class="form" id="form">
+      <p id="preview"></p>
+      <div>
+        <label for="content">Content</label>
+        <textarea id="content" placeholder="Type/Paste your content here"></textarea>
+      </div>
+      <div>
+        <label for="words">Word(s) to redactr</label>
+        <input type="text" name="words" id="words" placeholder="Specify Words to redactr (e.g book pen money)">
+      </div>
+
+      <!-- Interface for the feature to allow  users to specify what would be used to replace the words to be scrambled. Going forward lets refer to this feature as Feature 2 -->
+      <div>
+        <p>Specify what to use as replacement for the words that you want scrambled. For example; asteriks, question
+          marks, dashes, underscores, or even other words.</p>
+        <label for="replacement">Replacement</label>
+        <input type="text" id="replacement" name="replacement" placeholder="Specify a replacement">
+      </div>
       <!-- End of Feature 2 interface-->
-    
-    <div>
-      <input type="submit" id="submit" value="submit">
-    </div>
-  </form>
 
+      <div>
+        <input type="submit" id="submit" value="Redactr">
+      </div>
+    </form>
+  </main>
+  <footer class="footer">
+    Redactr by Circle 228 &copy; 2022. All right reserved.
+  </footer>
   <!-- // ============= EEND DO NOT EDIT ============== // -->
   <script src="index.mjs" type="module"></script>
   <!-- // ============= EEND DO NOT EDIT ============== // -->
