@@ -6,28 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redactr</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    referrerpolicy="no-referrer" />
   <script src="./index.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <header class="header">
+    <h1>Redactr</h1>
+    <p>Redactr is here to help you safely share content on social media by scrambling portions of the text you don’t
+      want the world to read/see.</p>
+  </header>
   <main class="main">
-    <section>
-      <h1>Redactr</h1>
-      <p>Redactr is here to help you safely share content on social media by scrambling portions of the text you don’t
-        want the world to read/see.</p>
+    <section class="how-it-works">
       <h3>How it works</h3>
       <ol>
         <li>Write/paste the content into the specified form field</li>
-        <li>specify the words you need to be scrambled into the specified input field <span>more than one word are
+        <li>Specify the words you need to be scrambled into the specified input field <span>more than one word are
             separated by space </span></li>
+        <li>Specify what to use as replacement for the words that you want scrambled. For example asteriks (*), question
+          marks (?), dashes (-), underscores (_), or even other words.</li>
         <li>Click on the Redactr button to redactr your content</li>
       </ol>
-
     </section>
 
     <form action="" class="form" id="form">
-      <p id="preview"></p>
+      <h2>Provide the information you wish to redact below </h2>
+      <p id="err"></p>
       <div>
         <label for="content">Content</label>
         <textarea id="content" placeholder="Type/Paste your content here"></textarea>
@@ -39,17 +45,41 @@
 
       <!-- Interface for the feature to allow  users to specify what would be used to replace the words to be scrambled. Going forward lets refer to this feature as Feature 2 -->
       <div>
-        <p>Specify what to use as replacement for the words that you want scrambled. For example; asteriks, question
-          marks, dashes, underscores, or even other words.</p>
-        <label for="replacement">Replacement</label>
-        <input type="text" id="replacement" name="replacement" placeholder="Specify a replacement">
+        <label for="replacement">Replacement (optional)</label>
+        <input type="text" id="replacement" name="replacement" placeholder="Specify a replacement (e.g #, *, @, $)">
       </div>
       <!-- End of Feature 2 interface-->
-
       <div>
         <input type="submit" id="submit" value="Redactr">
       </div>
     </form>
+    <section class="preview-container">
+      <h3>Congratulations, your text have been redacted!</h3>
+      <p class="preview-para">
+        <i class="fa-solid fa-clipboard" title="Copy to clipboard"></i>
+        <span id="preview"></span>
+      </p>
+      <div class="share">
+        <div>
+          <button class="back"><i class="fa-solid fa-angle-left"></i> back</button>
+        </div>
+        <div class="social-btns">
+          <Span>Share on:</Span>
+            <a class="social-btn whatsapp"  target="_blank" rel="noopener noreferrer"><i title="WhatsApp" class="fab fa-whatsapp"></i></a>
+            <a class="social-btn sms" target="_blank" rel="noopener noreferrer"><i title="Text Message" class="fas fa-sms"></i></a>
+            <a class="social-btn mail" target="_blank" rel="noopener noreferrer"><i title="Mail" class="far fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="stat">
+<!--         dynamically added with javascript  -->
+<!--         <h3>Stats</h3>
+        <hr>
+        <p>Scanned Word(s): <span>20 words</span></p>
+        <p>Matched Word(s): <span>10 words</span></p>
+        <p>Character Count(s): <span>220 characters</span></p>
+        <p>Time Completed: <span>900ms</span></p> -->
+      </div>
+    </section>
   </main>
   <footer class="footer">
     Redactr by Circle 228 &copy; 2022. All right reserved.

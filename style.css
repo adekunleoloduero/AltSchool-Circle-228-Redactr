@@ -1,4 +1,182 @@
 *{
   box-sizing: border-box;
 }
+:root{
+  font-size: 18px;
+}
+body{
+  background-color: #f5f0e1;
+}
 
+.header, .main{
+  min-width: 350px;
+  width: 700px;
+  margin: 10px auto;
+}
+.main{
+  margin: 20px auto;
+  background-color: #1e3d59;
+  border-radius: 5px;
+  padding: 30px;
+  color: #f5f0e1;
+}
+.header,
+.form h2{
+  text-align: center;
+}
+.header h1{
+  color: #ff6e40;
+  font-size: 2rem;
+}
+.header p{
+  color: #1e3d59;
+}
+.how-it-works h2{
+  font-size: 1.7rem;
+}
+.how-it-works li{
+  margin: 10px 0;
+}
+.form{
+  width: 90%;
+  margin: 0 auto;
+}
+.form div{
+  width: 100%;
+  margin: 20px 0;
+}
+.form label, 
+.form input, 
+textarea{
+  display: block;
+  width: 100%;
+}
+.form label{
+  color: #ff6e40;
+  margin: 5px 0;
+}
+.form input,
+textarea{
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+}
+.form textarea{
+  min-height: 200px;
+}
+.form input{
+  height: 50px;
+  border: none;
+}
+#submit{
+  background-color: #ff6e40;
+  color: #f5f0e1;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+.share div button:hover,
+#submit:hover{
+  background-color: #f99171;
+}
+#err{
+  color: red;
+  text-align: center;
+  font-size: 1.2rem;
+}
+/* preview container styling  */
+.preview-container{
+  display: none;
+  width: 100%;
+}
+.preview-container h3{
+  text-align: center;
+  color: green;
+}
+.preview-para{
+  padding: 20px;
+  border-radius: 5px;
+  min-height: 200px;
+  color: #1e3d59;
+  background-color: #ffc113;
+  position: relative;
+}
+
+.preview-para i{
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 1.2rem;
+}
+.preview-para:hover > i {
+  display: inline;
+  color: #f5f0e1;
+}
+.share{
+  display: flex;
+}
+.share div{
+  width: 100%;
+}
+.share div button{
+  padding: 10px 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ff6e40;
+  cursor: pointer;
+}
+.fab, .fas, .far{
+  font-size: 1.3rem;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.social-btn{
+  color: unset;
+  text-decoration: none;
+}
+.stat{
+  color: #f5f0e1;
+}
+.stat h3{
+  text-align: left;
+}
+.stat hr{
+  margin: 0;
+  width: 100px;
+}
+.stat p{
+  color: green;
+}
+.stat p span{
+  color: #ff6e40;
+}
+
+/* .how-it-works, .form{
+  display: none;
+} */
+
+/* footer styling */
+
+.footer{
+  width: 100%;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 750px){
+  .header, .main{
+    min-width: 300px;
+    width: 90%;
+  } 
+  .main{
+    padding: 10px;
+  }
+  .share{
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .share div button{
+    width: 100%;
+    padding: 20px;
+  }
+}
