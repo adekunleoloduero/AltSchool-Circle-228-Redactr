@@ -60,6 +60,7 @@ textarea{
   background-color: #f4f4f4;
   padding: 10px;
   border-radius: 5px;
+  outline: none;
 }
 .form textarea{
   min-height: 200px;

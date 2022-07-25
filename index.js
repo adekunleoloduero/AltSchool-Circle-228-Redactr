@@ -71,10 +71,10 @@ const checkStat = () => {
   stats.innerHTML = `
     <h3>Stats</h3>
     <hr>
-    <p>Scanned Word(s): <span>${scannedWords(content)} words</span></p>
-    <p>Matched Word(s): <span>${wordCount(getWords(words.value))} words</span></p>
-    <p>Character Count(s): <span>${charCount(getWords(words.value))} characters</span></p>
-    <p>Time Completed: <span>900ms</span></p>
+    <p>Scanned Word(s): <span>${scannedWords(content)} ${scannedWords(content) < 2 ? "word" : "words"}</span></p>
+    <p>Matched Word(s): <span>${wordCount(getWords(words.value))} ${wordCount(getWords(words.value)) < 2 ? "word" : "words"}</span></p>
+    <p>Character Count(s): <span>${charCount(getWords(words.value))} ${charCount(getWords(words.value)) < 2 ? "character" : "characters"}</span></p>
+    <p>Time Completed: <span>${timeTaken.toFixed(2)}ms</span></p>
   `;
 }
 
@@ -91,7 +91,7 @@ const stats = document.getElementsByClassName("stat")[0];
 const backBtn = document.getElementsByClassName("back")[0];
 const copy = document.getElementsByClassName("fa-clipboard")[0];
 const socialBtn = document.querySelectorAll('.social-btn');
-
+let timeTaken;
 //this function handles every converstion at an event
 function redactWords() {
   let formValidation = validateInput(content, words, replacement);
@@ -109,14 +109,17 @@ function redactWords() {
     howItWorks.style.display = "none";
     redactr.style.display = "none";
 
-    checkStat();
   }
 }
 
 //submit event 
 redactr.onsubmit = (e) => {
   e.preventDefault(); //prevents the default form submission
+  let start = performance.now();
   redactWords();
+  let end = performance.now();
+  timeTaken = end - start;
+  checkStat();
 }
 // back button 
 backBtn.onclick = () => {
