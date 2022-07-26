@@ -45,28 +45,34 @@ const replacer = (arr) => {
   return replaceArr;
 }
 // Advanced featured 
+// check for number of words redacted
 const wordCount = (sepWords) => {
-  let matchCount = 0;
+  // sepWords is a parameter of type array (expected)
+  let matchCount = 0; 
   sepWords.forEach(word => {
-    let regex = new RegExp(word, "g");
-    matchCount += (content.value).match(regex).length;
+    // interates over each words in the array
+    let regex = new RegExp(word, "gi"); //Regex that matches word and each case
+    //regex match() returns an array
+    matchCount += (content.value).match(regex).length; //takes a length of array and update matchCount
   });
   return matchCount;
 }
 const charCount = sepWords => {
   let matchCount = 0;
   sepWords.forEach(word => {
-    let regex = new RegExp(word, "g");
+    let regex = new RegExp(word, "gi");
     (content.value).match(regex).forEach(char => {
       matchCount += char.length;
     })
   });
   return matchCount;
 }
+// checks the number of words scanned through 
 const scannedWords = str => {
   return getWords(str.value).length;
 }
 
+// function that runs other function written for stats
 const checkStat = () => {
   stats.innerHTML = `
     <h3>Stats</h3>
@@ -91,7 +97,9 @@ const stats = document.getElementsByClassName("stat")[0];
 const backBtn = document.getElementsByClassName("back")[0];
 const copy = document.getElementsByClassName("fa-clipboard")[0];
 const socialBtn = document.querySelectorAll('.social-btn');
+
 let timeTaken;
+
 //this function handles every converstion at an event
 function redactWords() {
   let formValidation = validateInput(content, words, replacement);
