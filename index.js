@@ -8,15 +8,15 @@ const validateInput = (input1, input2, input3) => {
   if (input1.value == "" || input2.value == "" || (input3.value).length > 1) {
     if (input1.value == "") {
       input1.style = "border: 1px solid red";
-      err.innerHTML = "Please provide the content";
+      err.innerHTML = "Please provide the content.";
     } else if (input2.value == "") {
       input1.style = "border: 1px solid green";
       input2.style = "border: 1px solid red";
-      err.innerHTML = "Please provide the words to redact";
+      err.innerHTML = "Please provide the word (s) to scramble.";
     } else if ((input3.value).length > 1) {
       input2.style = "border: 1px solid green";
       input3.style = "border: 1px solid red";
-      err.innerHTML = "Please provide only one characher";
+      err.innerHTML = "Character length cannot be more that 1.";
     }
     return false;
   }

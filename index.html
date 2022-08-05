@@ -20,14 +20,14 @@
   </header>
   <main class="main">
     <section class="how-it-works">
-      <h3>How it works</h3>
+      <h3 style="color: #ff6e40">How it works</h3>
       <ol>
-        <li>Write/paste the content into the specified form field</li>
-        <li>Specify the words you need to be scrambled into the specified input field <span>more than one word are
-            separated by space </span></li>
-        <li>Specify what to use as replacement for the words that you want scrambled. For example asteriks (*), question
+        <li>Write/paste the content into the designated field.</li>
+        <li>Specify the words you need to be scrambled in the designated field. Multiple words should be
+            separated by space.</li>
+        <li><span style="color: #ff6e40;">Optional</span> - Specify what to use as replacement for the words that you want scrambled. For example asteriks (*), question
           marks (?), dashes (-), underscores (_), or even other words.</li>
-        <li>Click on the Redactr button to redactr your content</li>
+        <li>Click on the "Redact Now" button to start the scrambling.</li>
       </ol>
     </section>
 
@@ -39,29 +39,29 @@
         <textarea id="content" placeholder="Type/Paste your content here"></textarea>
       </div>
       <div>
-        <label for="words">Word(s) to redactr</label>
+        <label for="words">Word (s) to scramble</label>
         <input type="text" name="words" id="words" placeholder="Specify Words to redactr (e.g book pen money)">
       </div>
 
       <!-- Interface for the feature to allow  users to specify what would be used to replace the words to be scrambled. Going forward lets refer to this feature as Feature 2 -->
       <div>
-        <label for="replacement">Replacement (optional)</label>
+        <label for="replacement">Replacement (Optional)</label>
         <input type="text" id="replacement" name="replacement" placeholder="Specify a replacement (e.g #, *, @, $)">
       </div>
       <!-- End of Feature 2 interface-->
       <div>
-        <input type="submit" id="submit" value="Redactr">
+        <input type="submit" id="submit" value="Redact Now">
       </div>
     </form>
     <section class="preview-container">
-      <h3>Congratulations, your text have been redacted!</h3>
+      <h3>Congratulations, your text was succesfully scrambled!</h3>
       <p class="preview-para">
         <i class="fa-solid fa-clipboard" title="Copy to clipboard"></i>
         <span id="preview"></span>
       </p>
       <div class="share">
         <div>
-          <button class="back"><i class="fa-solid fa-angle-left"></i> back</button>
+          <button class="back"><i class="fa-solid fa-angle-left"></i>Back</button>
         </div>
         <div class="social-btns">
           <Span>Share on:</Span>
