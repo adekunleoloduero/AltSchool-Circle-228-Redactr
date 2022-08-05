@@ -37,13 +37,27 @@ function rep(text, replaceWith = "#") {
   return replaceText;
 }
 
-const replacer = (arr) => {
+const replaceWithXter = (arr) => {
   let replaceArr = arr.map(item => {
     item = rep(item, replacement.value);
     return item;
   })
   return replaceArr;
 }
+
+
+/**
+ * 
+ * @param {*} wordsToScramble 
+ * @returns 
+ */
+const replaceWithWord = (wordsToScramble) => {
+  const scrambledWords = wordsToScramble.map(word => {
+    word = wordReplacement;
+  });
+  return scrambledWords;
+}
+
 // Advanced featured 
 // check for number of words redacted
 const wordCount = (sepWords) => {
@@ -89,6 +103,7 @@ const content = document.getElementById("content");
 const words = document.getElementById("words");
 const redactr = document.getElementById("form");
 const replacement = document.getElementById("replacement");
+const wordReplacement = document.getElementById('word-replacement').value;
 const preview = document.getElementById("preview");
 const err = document.getElementById("err");
 const previewContainer = document.getElementsByClassName("preview-container")[0];
@@ -100,16 +115,42 @@ const socialBtn = document.querySelectorAll('.social-btn');
 
 let timeTaken;
 
+
+
+const replacementType = () => {
+  const xterReplacement = document.getElementById('replacement').value;
+  const wordReplacement = document.getElementById('word-replacement').value;
+
+  if ((xterReplacement != null || xterReplacement.length == 1) && (wordReplacement == null || wordReplacement.length < 1)) {
+    return 0;
+  } else if ((xterReplacement == null || xterReplacement.length < 1) && (wordReplacement != null || wordReplacement.length > 0)) {
+    return 1;
+  } else if ((xterReplacement != null || xterReplacement.length == 1) && (wordReplacement != null || wordReplacement.length > 0)) {
+    err.textContent = 'Specify EITHER a character OR word, NOT both.'
+    return
+  }
+}
+
+
 //this function handles every converstion at an event
 function redactWords() {
   let formValidation = validateInput(content, words, replacement);
+  let scramblingPatterns; //Pattern to be applied to scrambled words
+
   if (formValidation) {
-    let secretWords = getWords(words.value);
-    let redactedArr = replacer(secretWords);
+    // let secretWords = getWords(words.value);
+    let wordsToScramble = getWords(words.value);
+
+    if (replacementType() == 0) {
+      scramblingPatterns = replaceWithXter(wordsToScramble);
+    } else if (replacementType() == 1) {
+      scramblingPatterns = replaceWithWord(wordsToScramble);
+    }
+
     let contentValue = content.value;
 
-    for (let i = 0; i < secretWords.length; i++) {
-      contentValue = contentValue.replaceAll(secretWords[i], redactedArr[i]);
+    for (let i = 0; i < wordsToScramble.length; i++) {
+      contentValue = contentValue.replaceAll(wordsToScramble[i], scramblingPatterns[i]);
     }
 
     preview.innerHTML = contentValue;
@@ -119,6 +160,8 @@ function redactWords() {
 
   }
 }
+
+
 
 //submit event 
 redactr.onsubmit = (e) => {
