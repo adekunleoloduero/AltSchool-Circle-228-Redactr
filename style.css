@@ -82,9 +82,14 @@ textarea{
   background-color: #f99171;
 }
 #err{
-  color: red;
+  background-color: #ff6e40;
   text-align: center;
   font-size: 1.2rem;
+  padding: 0.4em;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8em;
 }
 /* preview container styling  */
 .preview-container{

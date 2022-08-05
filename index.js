@@ -37,6 +37,7 @@ function rep(text, replaceWith = "#") {
   return replaceText;
 }
 
+
 const replaceWithXter = (arr) => {
   let replaceArr = arr.map(item => {
     item = rep(item, replacement.value);
@@ -53,12 +54,13 @@ const replaceWithXter = (arr) => {
  */
 const replaceWithWord = (wordsToScramble) => {
   const scrambledWords = wordsToScramble.map(word => {
-    word = wordReplacement;
+    word = wordReplacement.value;
+    return word;
   });
   return scrambledWords;
 }
 
-// Advanced featured 
+// Advanced feature
 // check for number of words redacted
 const wordCount = (sepWords) => {
   // sepWords is a parameter of type array (expected)
@@ -71,6 +73,8 @@ const wordCount = (sepWords) => {
   });
   return matchCount;
 }
+
+
 const charCount = sepWords => {
   let matchCount = 0;
   sepWords.forEach(word => {
@@ -81,6 +85,8 @@ const charCount = sepWords => {
   });
   return matchCount;
 }
+
+
 // checks the number of words scanned through 
 const scannedWords = str => {
   return getWords(str.value).length;
@@ -103,7 +109,7 @@ const content = document.getElementById("content");
 const words = document.getElementById("words");
 const redactr = document.getElementById("form");
 const replacement = document.getElementById("replacement");
-const wordReplacement = document.getElementById('word-replacement').value;
+const wordReplacement = document.getElementById('word-replacement');
 const preview = document.getElementById("preview");
 const err = document.getElementById("err");
 const previewContainer = document.getElementsByClassName("preview-container")[0];
@@ -121,11 +127,11 @@ const replacementType = () => {
   const xterReplacement = document.getElementById('replacement').value;
   const wordReplacement = document.getElementById('word-replacement').value;
 
-  if ((xterReplacement != null || xterReplacement.length == 1) && (wordReplacement == null || wordReplacement.length < 1)) {
+  if ((xterReplacement != null || xterReplacement.length > 0) && (wordReplacement == null || wordReplacement.length < 1)) {
     return 0;
   } else if ((xterReplacement == null || xterReplacement.length < 1) && (wordReplacement != null || wordReplacement.length > 0)) {
     return 1;
-  } else if ((xterReplacement != null || xterReplacement.length == 1) && (wordReplacement != null || wordReplacement.length > 0)) {
+  } else if ((xterReplacement != null || xterReplacement.length > 0) && (wordReplacement != null || wordReplacement.length > 0)) {
     err.textContent = 'Specify EITHER a character OR word, NOT both.'
     return
   }
