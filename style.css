@@ -81,7 +81,7 @@ textarea{
 #submit:hover{
   background-color: #f99171;
 }
-#err{
+.err{
   background-color: #ff6e40;
   text-align: center;
   font-size: 1.2rem;
@@ -91,6 +91,7 @@ textarea{
   border-radius: 6px;
   font-size: 0.8em;
 }
+
 /* preview container styling  */
 .preview-container{
   display: none;

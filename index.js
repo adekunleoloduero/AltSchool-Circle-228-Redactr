@@ -1,3 +1,9 @@
+//When the page loads for the first time
+window.onload = () => {
+  content.focus(); //Focus on the Content field
+}
+
+
 //the following function gets and seperate word to an array
 const getWords = (str) => {
   let arr = str.split(" ");
@@ -8,15 +14,18 @@ const validateInput = (input1, input2, input3) => {
   if (input1.value == "" || input2.value == "" || (input3.value).length > 1) {
     if (input1.value == "") {
       input1.style = "border: 1px solid red";
-      err.innerHTML = "Please provide the content.";
+      // err.innerHTML = "Please provide the content.";
+      showMessage('Please provide the content.');
     } else if (input2.value == "") {
       input1.style = "border: 1px solid green";
       input2.style = "border: 1px solid red";
-      err.innerHTML = "Please provide the word (s) to scramble.";
+      // err.innerHTML = "Please provide the word (s) to scramble.";
+      showMessage("Please provide the word (s) to scramble.");
     } else if ((input3.value).length > 1) {
       input2.style = "border: 1px solid green";
       input3.style = "border: 1px solid red";
-      err.innerHTML = "Character length cannot be more that 1.";
+      // err.innerHTML = "Character length cannot be more that 1.";
+      showMessage("Character length cannot be greater than 1.");
     }
     return false;
   }
@@ -111,7 +120,7 @@ const redactr = document.getElementById("form");
 const replacement = document.getElementById("replacement");
 const wordReplacement = document.getElementById('word-replacement');
 const preview = document.getElementById("preview");
-const err = document.getElementById("err");
+const err = document.querySelector("#err");
 const previewContainer = document.getElementsByClassName("preview-container")[0];
 const howItWorks = document.getElementsByClassName("how-it-works")[0];
 const stats = document.getElementsByClassName("stat")[0];
@@ -132,11 +141,36 @@ const replacementType = () => {
   } else if ((xterReplacement == null || xterReplacement.length < 1) && (wordReplacement != null || wordReplacement.length > 0)) {
     return 1;
   } else if ((xterReplacement != null || xterReplacement.length > 0) && (wordReplacement != null || wordReplacement.length > 0)) {
-    err.textContent = 'Specify EITHER a character OR word, NOT both.'
-    return
+    return 2;
   }
 }
 
+
+/**
+ * 
+ * @param {*} message 
+ */
+function showMessage(message) {
+  //Clear previous message
+  clearPreviousMessage();
+
+  //Insert new message
+  const form = document.getElementById('form');
+  const firstChildElem = form.firstElementChild;
+  const newMessage = document.createElement('p');
+  newMessage.id = 'err'
+  newMessage.textContent = message;
+  newMessage.classList.add('err');
+  form.insertBefore(newMessage, firstChildElem);
+}
+
+
+function clearPreviousMessage() {
+  if (document.getElementById('form').style.display != "none" && (document.getElementById('err') != null)) {
+    const prevMessage = document.getElementById('err');
+    prevMessage.remove();
+  }
+}
 
 //this function handles every converstion at an event
 function redactWords() {
@@ -151,6 +185,13 @@ function redactWords() {
       scramblingPatterns = replaceWithXter(wordsToScramble);
     } else if (replacementType() == 1) {
       scramblingPatterns = replaceWithWord(wordsToScramble);
+    } else if (replacementType() == 2) {
+      //Error indicator using red border line
+      document.getElementById('replacement').style.border = "1px solid red";
+      document.getElementById('word-replacement').style.border = "1px solid red";
+
+      showMessage('Specify EITHER a character OR a word, NOT both.');
+      return;
     }
 
     let contentValue = content.value;
@@ -183,6 +224,9 @@ backBtn.onclick = () => {
   previewContainer.style = "display: none;";
   howItWorks.style.display = "block";
   redactr.style.display = "block";
+
+  clearPreviousMessage();
+  document.getElementById('content').focus();
 }
 
 copy.onclick = () => {
