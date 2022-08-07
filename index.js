@@ -73,7 +73,7 @@ const replaceWithWord = (wordsToScramble) => {
 // check for number of words redacted
 const wordCount = (sepWords) => {
   // sepWords is a parameter of type array (expected)
-  let matchCount = 0; 
+  let matchCount = 0;
   sepWords.forEach(word => {
     // interates over each words in the array
     let regex = new RegExp(word, "gi"); //Regex that matches word and each case
