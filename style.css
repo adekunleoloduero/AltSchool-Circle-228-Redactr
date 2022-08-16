@@ -82,12 +82,10 @@ textarea{
   background-color: #f99171;
 }
 .err{
-  /* background-color: #ff6e40; */
   text-align: center;
   padding: 0.4em;
   color: yellow;
   border: none;
-  /* border-radius: 6px; */
   font-size: 0.8em;
 }
 
