@@ -14,17 +14,14 @@ const validateInput = (input1, input2, input3) => {
   if (input1.value == "" || input2.value == "" || (input3.value).length > 1) {
     if (input1.value == "") {
       input1.style = "border: 1px solid red";
-      // err.innerHTML = "Please provide the content.";
       showMessage('Please provide the content.');
     } else if (input2.value == "") {
       input1.style = "border: 1px solid green";
       input2.style = "border: 1px solid red";
-      // err.innerHTML = "Please provide the word (s) to scramble.";
       showMessage("Please provide the word (s) to scramble.");
     } else if ((input3.value).length > 1) {
       input2.style = "border: 1px solid green";
       input3.style = "border: 1px solid red";
-      // err.innerHTML = "Character length cannot be more that 1.";
       showMessage("Character length cannot be greater than 1.");
     }
     return false;
@@ -156,10 +153,10 @@ function showMessage(message) {
 
   //Insert new message
   const form = document.getElementById('form');
-  const firstChildElem = form.firstElementChild;
+  const firstChildElem = form.lastElementChild;
   const newMessage = document.createElement('p');
-  newMessage.id = 'err'
-  newMessage.textContent = message;
+  newMessage.id = 'err';
+  newMessage.textContent = `Warning - ${message}`;
   newMessage.classList.add('err');
   form.insertBefore(newMessage, firstChildElem);
 }
@@ -209,7 +206,6 @@ function redactWords() {
 }
 
 
-
 //submit event 
 redactr.onsubmit = (e) => {
   e.preventDefault(); //prevents the default form submission
@@ -228,6 +224,7 @@ backBtn.onclick = () => {
   clearPreviousMessage();
   document.getElementById('content').focus();
 }
+
 
 copy.onclick = () => {
   //NB. doesn't work on iframes, switch to full display
