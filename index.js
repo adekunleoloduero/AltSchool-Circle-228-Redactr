@@ -9,27 +9,32 @@ const getWords = (str) => {
   let arr = str.split(" ");
   return arr;
 }
+
 // the following function will check if user enters the correct inputs 
-const validateInput = (input1, input2, input3) => {
-  if (input1.value == "" || input2.value == "" || (input3.value).length > 1) {
+const validateInput = (input1, input2, input3, input4) => {
+  if (input1.value == "" || input2.value == "" || (input3.value).length > 1 || (input3.value.length > 0 && input4.value.length > 0)) {
     if (input1.value == "") {
-      input1.style = "border: 1px solid red";
+      input1.style = "border: 2px solid red";
       showMessage('Please provide the content.');
     } else if (input2.value == "") {
-      input1.style = "border: 1px solid green";
-      input2.style = "border: 1px solid red";
+      input1.style = "border: 2px solid green";
+      input2.style = "border: 2px solid red";
       showMessage("Please provide the word (s) to scramble.");
-    } else if ((input3.value).length > 1) {
-      input2.style = "border: 1px solid green";
-      input3.style = "border: 1px solid red";
+    } else if (((input3.value).length > 1) && (input4.value == null || input4.value.length == 0)) {
+      input1.style = "border: 2px solid green";
+      input2.style = "border: 2px solid green";
+      input3.style = "border: 2px solid red";
+      input4.style = "border: 2px solid green";
       showMessage("Character length cannot be greater than 1.");
+    } else if (input3.value.length > 0 && input4.value.length > 0) {
+      input1.style = "border: 2px solid green";
+      input2.style = "border: 2px solid green";
+      input3.style = "border: 2px solid red";
+      input4.style = "border: 2px solid red";
+      showMessage('Specify EITHER a character OR a word, NOT both.');
     }
     return false;
   }
-  input1.style = "border: 1px solid green";
-  input2.style = "border: 1px solid green";
-  input3.style = "border: 1px solid green";
-  err.innerHTML = "";
   return true;
 }
 
@@ -137,8 +142,6 @@ const replacementType = () => {
     return 0;
   } else if ((xterReplacement == null || xterReplacement.length < 1) && (wordReplacement != null || wordReplacement.length > 0)) {
     return 1;
-  } else if ((xterReplacement != null || xterReplacement.length > 0) && (wordReplacement != null || wordReplacement.length > 0)) {
-    return 2;
   }
 }
 
@@ -171,39 +174,38 @@ function clearPreviousMessage() {
 
 //this function handles every converstion at an event
 function redactWords() {
-  let formValidation = validateInput(content, words, replacement);
+  let formValidation = validateInput(content, words, replacement, wordReplacement);
   let scramblingPatterns; //Pattern to be applied to scrambled words
-
+  let wordsToScramble = getWords(words.value);
   if (formValidation) {
-    // let secretWords = getWords(words.value);
-    let wordsToScramble = getWords(words.value);
+
+    content.style = "border: 2px solid green";
+    words.style = "border: 2px solid green";
+    replacement.style = "border: 2px solid green";
+    wordReplacement.style = "border: 2px solid green";
 
     if (replacementType() == 0) {
       scramblingPatterns = replaceWithXter(wordsToScramble);
     } else if (replacementType() == 1) {
       scramblingPatterns = replaceWithWord(wordsToScramble);
-    } else if (replacementType() == 2) {
-      //Error indicator using red border line
-      document.getElementById('replacement').style.border = "1px solid red";
-      document.getElementById('word-replacement').style.border = "1px solid red";
-
-      showMessage('Specify EITHER a character OR a word, NOT both.');
-      return;
-    }
-
-    let contentValue = content.value;
-
-    for (let i = 0; i < wordsToScramble.length; i++) {
-      contentValue = contentValue.replaceAll(wordsToScramble[i], scramblingPatterns[i]);
-    }
-
-    preview.innerHTML = contentValue;
-    previewContainer.style = "display: block;";
-    howItWorks.style.display = "none";
-    redactr.style.display = "none";
-
+    } 
+  } else {
+    return;
   }
+
+
+  let contentValue = content.value;
+
+  for (let i = 0; i < wordsToScramble.length; i++) {
+    contentValue = contentValue.replaceAll(wordsToScramble[i], scramblingPatterns[i]);
+  }
+
+  preview.innerHTML = contentValue;
+  previewContainer.style = "display: block;";
+  howItWorks.style.display = "none";
+  redactr.style.display = "none";
 }
+
 
 
 //submit event 
@@ -215,6 +217,7 @@ redactr.onsubmit = (e) => {
   timeTaken = end - start;
   checkStat();
 }
+
 // back button 
 backBtn.onclick = () => {
   previewContainer.style = "display: none;";
@@ -248,4 +251,4 @@ socialBtn.forEach(btn => {
         console.log("error");
     }
   }
-})
+});
