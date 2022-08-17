@@ -24,6 +24,7 @@ const validateInput = (input1, input2, input3, input4) => {
       input1.style = "border: 2px solid green";
       input2.style = "border: 2px solid green";
       input3.style = "border: 2px solid red";
+      input4.style = "border: 2px solid green";
       showMessage("Character length cannot be greater than 1.");
     } else if (input3.value.length > 0 && input4.value.length > 0) {
       input1.style = "border: 2px solid green";
